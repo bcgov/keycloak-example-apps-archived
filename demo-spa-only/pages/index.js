@@ -1,6 +1,7 @@
 import { Container, Button, Message } from "semantic-ui-react";
 import { useEffect, useState } from "react";
 import KeycloakTable from "components/KeycloakTable";
+const BASE_PATH = '/keycloak-example-apps'
 
 export default function Home() {
   const [auth, setAuth] = useState({ keycloak: {} });
@@ -10,7 +11,7 @@ export default function Home() {
     setLoading(true);
     const initKeycloak = async () => {
       let Keycloak = require("keycloak-js");
-      const keycloak = Keycloak("/keycloak.json");
+      const keycloak = Keycloak(`${BASE_PATH}/keycloak.json`);
       if (window && typeof window !== "object") return;
       keycloak
         .init({
