@@ -4,5 +4,5 @@
   "realm": "onestopauth",
   "ssl-required": "external",
   "public-client": true,
-  "resource": "sso-requests"
+  "resource": "sso-test-2-2"
 }
