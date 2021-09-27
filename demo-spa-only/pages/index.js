@@ -1,44 +1,26 @@
 import { Container, Button, Message } from "semantic-ui-react";
-import { useEffect, useState } from "react";
 import KeycloakTable from "components/KeycloakTable";
-const BASE_PATH = '/keycloak-example-apps'
+import ClientForm from "components/ClientForm";
 
-export default function Home() {
-  const [auth, setAuth] = useState({ keycloak: {} });
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    const initKeycloak = async () => {
-      let Keycloak = require("keycloak-js");
-      const keycloak = Keycloak(`${BASE_PATH}/keycloak.json`);
-      if (window && typeof window !== "object") return;
-      keycloak
-        .init({
-          pkceMethod: "S256",
-          redirectUri: "https://bcgov.github.io/keycloak-example-apps/",
-          idpHint: "idir",
-        })
-        .then(() => {
-          setAuth({ keycloak: keycloak });
-          setLoading(false);
-        });
-    };
-    initKeycloak();
-  }, []);
-
-  const handleLogin = () => auth.keycloak.login({ idpHint: "idir" });
-  const handleLogout = () => auth.keycloak.logout();
-
-  const { keycloak } = auth;
+export default function Home({loading, keycloak, setCustomConfig}) {
+  const handleLogin = () => keycloak?.login({ idpHint: "idir" });
+  const handleLogout = () => keycloak?.logout();
 
   return (
     <Container>
-      <h1>A simple Keycloak Configuration</h1>
+      <br/>
+      <h1>Keycloak Playground</h1>
+      <p>This is a playground application for using the <code>keycloak-js</code> adapter. Click the <strong>Login</strong> button
+      below to login with the default client (uses IDIR as an IDP) and see your different token details. If you have your own
+      public client, you can use the form below (Click on <strong>Set My Own Client</strong>) to authenticate to your own client.</p>
       <Button onClick={handleLogin}>Login</Button>
       <Button onClick={handleLogout}>Logout</Button>
+      <br />
+      <br />
+      <ClientForm setCustomConfig={setCustomConfig} />
+      <br />
       {loading ||
-        (!keycloak.authenticated && (
+        (!keycloak?.authenticated && (
           <Message>
             <p>Login to see id token details</p>
           </Message>
