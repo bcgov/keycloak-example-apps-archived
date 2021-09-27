@@ -16,7 +16,7 @@ export default function Home() {
       keycloak
         .init({
           pkceMethod: "S256",
-          redirectUri: "http://localhost:3000",
+          redirectUri: "https://bcgov.github.io/keycloak-example-apps/",
           idpHint: "idir",
         })
         .then(() => {
