@@ -13,7 +13,7 @@ const Contents = ({ keycloak, activeItem }) => {
         <Table celled>
           <Table.Body>
             {Object.entries(keycloak[activeItem]).map(([key, val]) => (
-              <Table.Row>
+              <Table.Row key={key}>
                 <Table.Cell>{key}</Table.Cell>
                 <Table.Cell>{val}</Table.Cell>
               </Table.Row>
