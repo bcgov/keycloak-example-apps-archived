@@ -8,6 +8,9 @@ use our our self-service [webapp](https://bcgov.github.io/sso-requests/) to crea
 
 ## Examples
 
+
+[Demonstration of using example apps](https://user-images.githubusercontent.com/37274633/136239765-97cf3c91-eb22-4f42-b682-b4cb0e619cfc.mp4)
+
 ### public-nextjs
 
 This is an example application setup to use a frontend single-page application(SPA)
