@@ -1,7 +1,7 @@
 ### public-fastAPI
 
 An example python API written in fastAPI, with a vuejs SPA frontend. The fastAPI backend
-uses [pyjwt](https://pyjwt.readthedocs.io/en/latest/) as an example of fetching the 
+uses [pyjwt](https://pyjwt.readthedocs.io/en/latest/) as an example of fetching the
 json web key from the `.well-known` endpoint and using it to verify a tokens signature.
 
 To run this example, you will need a public keycloak client you can use. If you have generated one with
