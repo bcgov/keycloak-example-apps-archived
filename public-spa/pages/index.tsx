@@ -19,7 +19,7 @@ const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }:
   return (
     <Container>
       <br />
-      <h1>Keycloak Playground</h1>
+      <h1>Keycloak OIDC Playground</h1>
       <p>
         This is a playground application for using the <code>keycloak-js</code> adapter. Click the{' '}
         <strong>Login</strong> button below to login with the default client (uses IDIR as an IDP) and see your
@@ -27,7 +27,7 @@ const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }:
         <strong>Set My Own Client</strong>) to authenticate to your own client.
       </p>
       <Button onClick={handleLogin}>Login</Button>
-      <Button onClick={handleLogout}>Logout</Button>
+      {keycloak?.authenticated && <Button onClick={handleLogout}>Logout</Button>}
       <br />
       <br />
       <Configuration

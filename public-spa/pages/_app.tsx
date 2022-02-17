@@ -35,9 +35,15 @@ function MyApp({ Component, pageProps }: AppProps) {
       setKeycloak(_keycloak);
 
       setLoading(true);
-      _keycloak.init(initOptions).then(() => {
-        setLoading(false);
-      });
+      _keycloak
+        .init(initOptions)
+        .then(() => {
+          setLoading(false);
+        })
+        .catch((error: any) => {
+          console.log('Error in init: ', error);
+          setLoading(false);
+        });
     };
     initKeycloak();
   }, [kcConfig]);
