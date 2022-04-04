@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     store.session('kcConfig') || {
       url: 'https://dev.oidc.gov.bc.ca/auth',
       realm: 'onestopauth',
-      clientId: 'sso-test-2-2',
+      clientId: 'sso-requests',
     },
   );
 
