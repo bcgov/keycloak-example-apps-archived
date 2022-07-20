@@ -49,13 +49,11 @@ const getAuthorizationUrl = async ({ identity_provider } = {}) => {
     params.identity_provider = identity_provider;
   }
 
-  //return `${COGNITO_DOMAIN_NAME_URL}/authorize?${qs.stringify(params, { encode: false })}`;
   return `${CSS_DOMAIN_NAME_URL}/auth?${qs.stringify(params, { encode: false })}`;
   
 };
 
 // see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.3
-// see https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/
 const getAccessToken = async ({ code }) => {
   const url = `${CSS_DOMAIN_NAME_URL}/token`;
   console.log("---------URL---",url);
@@ -76,12 +74,12 @@ const getAccessToken = async ({ code }) => {
   //   expires_in: 3600,
   //   token_type: "Bearer",
   // };
+  
   const config = {
     url,
     method: 'post',
     data: qs.stringify(params),
   };
-  console.log("GOT HERE 1")
   if (CSS_CLIENT_SECRET) {
     config.headers = { Authorization: `Basic ${btoa(`${CSS_CLIENT_ID}:${CSS_CLIENT_SECRET}`)}` };
   }
@@ -96,7 +94,7 @@ const getAccessToken = async ({ code }) => {
   data.id_token_decoded = decodingJWT(id_token);
   
   data.access_token_decoded = decodingJWT(access_token);
-  console.log("GOT HERE 4")
+
   data.refresh_token_decoded = decodingJWT(refresh_token);
 
   return data;

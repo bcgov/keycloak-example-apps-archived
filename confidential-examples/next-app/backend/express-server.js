@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const _ = require('lodash');
 
-const { getAuthorizationUrl, getAccessToken, getUserInfo, getLogoutUrl } = require('./cognito');
+const { getAuthorizationUrl, getAccessToken, getUserInfo, getLogoutUrl } = require('./init-express');
 
 const { COOKIE_SESSION_NAME, COOKIE_SESSION_SECRET } = require('./config');
 
@@ -41,7 +41,7 @@ const initExpresss = async () => {
     })
   );
 
-  // Cognito Login
+  // Login
   expressServer.get('/oauth/login', async (req, res) => {
     try {
       if (req.session.user) {
@@ -57,7 +57,7 @@ const initExpresss = async () => {
     }
   });
 
-  // Cognito Callback; Authorization Response
+  // Callback; Authorization Response
   // see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.2
   expressServer.get('/oauth', async (req, res) => {
     try {
