@@ -39,7 +39,7 @@ This project requires `http://localhost:3000/oauth` as a `Redirect URI`.
     docker-compose up
 ```
 
-Note this file will not update if changes are made to the app source code.  You can force a rebuild using  `docker-compose up --build`
+Note the docker image will not update if changes are made to the app source code.  You can force a rebuild using  `docker-compose up --build`
 
 
 ## Environment set up
