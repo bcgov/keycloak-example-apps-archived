@@ -91,8 +91,9 @@ const initExpresss = async () => {
       if (req.session.user) {
         req.session.user = undefined;
       }
-
-      res.redirect('/');
+      const logoutUrl = getLogoutUrl();
+      console.log("-----------LOGING OUT---------", logoutUrl);
+      res.redirect(logoutUrl);
     } catch (err) {
       console.error(err);
       res.json({ success: false, error: err.message || err });

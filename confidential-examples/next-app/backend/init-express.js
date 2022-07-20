@@ -100,10 +100,10 @@ const getUserInfo = async ({ accessToken }) => {
   return data;
 };
 
-const getLogoutUrl = async () => {
+const getLogoutUrl = () => {
   const params = {
     client_id: CSS_CLIENT_ID,
-    logout_uri: CSS_LOGOUT_REDIRECT_URL,
+    redirect_uri: CSS_LOGOUT_REDIRECT_URL,
   };
 
   return `${CSS_DOMAIN_NAME_URL}/logout?${qs.stringify(params, { encode: false })}`;
