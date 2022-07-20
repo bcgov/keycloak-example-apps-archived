@@ -57,7 +57,6 @@ const getAuthorizationUrl = async ({ identity_provider } = {}) => {
 // see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.3
 // see https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/
 const getAccessToken = async ({ code }) => {
- //const url = `${COGNITO_DOMAIN_NAME_URL}/oauth2/token`;
   const url = `${CSS_DOMAIN_NAME_URL}/token`;
   console.log("---------URL---",url);
   const params = {
@@ -82,18 +81,22 @@ const getAccessToken = async ({ code }) => {
     method: 'post',
     data: qs.stringify(params),
   };
-
+  console.log("GOT HERE 1")
   if (CSS_CLIENT_SECRET) {
     config.headers = { Authorization: `Basic ${btoa(`${CSS_CLIENT_ID}:${CSS_CLIENT_SECRET}`)}` };
   }
-
+  console.log("GOT HERE: the config is:")
+  console.log(config)
   const { data } = await axios(config);
-
+  console.log("GOT HERE 3")
+  console.log(data)
   const { id_token, access_token, refresh_token } = data;
-
+  
   // Decode tokens to get user information
   data.id_token_decoded = decodingJWT(id_token);
+  
   data.access_token_decoded = decodingJWT(access_token);
+  console.log("GOT HERE 4")
   data.refresh_token_decoded = decodingJWT(refresh_token);
 
   return data;

@@ -42,7 +42,7 @@ const initExpresss = async () => {
   );
 
   // Cognito Login
-  expressServer.get('/oauth/cognito/login', async (req, res) => {
+  expressServer.get('/oauth/login', async (req, res) => {
     try {
       if (req.session.user) {
         res.redirect(`/`);
@@ -59,7 +59,7 @@ const initExpresss = async () => {
 
   // Cognito Callback; Authorization Response
   // see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.2
-  expressServer.get('/oauth/cognito', async (req, res) => {
+  expressServer.get('/oauth', async (req, res) => {
     try {
       const { code } = req.query;
       console.log("-----------AUTH RESPONSE---------", code);
@@ -86,7 +86,7 @@ const initExpresss = async () => {
     }
   });
 
-  expressServer.get('/oauth/cognito/logout', (req, res) => {
+  expressServer.get('/oauth/logout', (req, res) => {
     try {
       if (req.session.user) {
         req.session.user = undefined;
