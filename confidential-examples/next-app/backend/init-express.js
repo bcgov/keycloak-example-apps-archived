@@ -63,17 +63,6 @@ const getAccessToken = async ({ code }) => {
     redirect_uri: CSS_LOGIN_REDIRECT_URL,
     code,
   };
-
-  // see https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
-  // see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.4
-  // Oauth2 response + OpenID Connect spec; id_token
-  // {
-  //   id_token: "xxxxxxx...",
-  //   access_token: "xxxxxxx...",
-  //   refresh_token: "xxxxxxx...",
-  //   expires_in: 3600,
-  //   token_type: "Bearer",
-  // };
   
   const config = {
     url,
@@ -83,11 +72,9 @@ const getAccessToken = async ({ code }) => {
   if (CSS_CLIENT_SECRET) {
     config.headers = { Authorization: `Basic ${btoa(`${CSS_CLIENT_ID}:${CSS_CLIENT_SECRET}`)}` };
   }
-  console.log("GOT HERE: the config is:")
-  console.log(config)
+
   const { data } = await axios(config);
-  console.log("GOT HERE 3")
-  console.log(data)
+
   const { id_token, access_token, refresh_token } = data;
   
   // Decode tokens to get user information
@@ -109,13 +96,6 @@ const getUserInfo = async ({ accessToken }) => {
       Authorization: `Bearer ${accessToken}`,
     },
   });
-
-  // {
-  //   sub: 'xxxxxxxx-xxxx-...',
-  //   email_verified: 'true',
-  //   email: 'example@example.com',
-  //   username: 'xxxxxxxx-xxxx-...'
-  // }
 
   return data;
 };
