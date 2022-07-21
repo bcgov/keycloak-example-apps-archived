@@ -2,14 +2,17 @@ const axios = require('axios');
 const qs = require('qs');
 
 const {
-  CSS_CLIENT_ID,
-  CSS_CLIENT_SECRET,
-  CSS_DOMAIN_NAME_URL,
-  CSS_LOGIN_GRANT_TYPE,
-  CSS_LOGIN_REDIRECT_URL,
-  CSS_LOGIN_RESPONSE_TYPE,
-  CSS_LOGIN_SCOPE,
-  CSS_LOGOUT_REDIRECT_URL,
+  OIDC_CLIENT_ID,
+  OIDC_CLIENT_SECRET,
+  OIDC_AUTHORIZATION_URL,
+  OIDC_TOKEN_URL,
+  OIDC_USER_INFO_URL,
+  OIDC_LOGOUT_URL,
+  OIDC_GRANT_TYPE,
+  OIDC_REDIRECT_URL,
+  OIDC_RESPONSE_TYPE,
+  OIDC_SCOPE,
+  OIDC_LOGOUT_REDIRECT_URL,
 } = require('./config');
 
 const btoa = (string) => Buffer.from(string).toString('base64');
@@ -38,10 +41,10 @@ const decodingJWT = (token) => {
 const getAuthorizationUrl = async ({ identity_provider } = {}) => {
 
   const params = {
-    client_id: CSS_CLIENT_ID,
-    response_type: CSS_LOGIN_RESPONSE_TYPE,
-    scope: CSS_LOGIN_SCOPE,
-    redirect_uri: CSS_LOGIN_REDIRECT_URL,
+    client_id: OIDC_CLIENT_ID,
+    response_type: OIDC_RESPONSE_TYPE,
+    scope: OIDC_SCOPE,
+    redirect_uri: OIDC_REDIRECT_URL,
   };
 
   // Give an option to select an identity provider.
@@ -49,18 +52,18 @@ const getAuthorizationUrl = async ({ identity_provider } = {}) => {
     params.identity_provider = identity_provider;
   }
 
-  return `${CSS_DOMAIN_NAME_URL}/auth?${qs.stringify(params, { encode: false })}`;
+  return `${OIDC_AUTHORIZATION_URL}?${qs.stringify(params, { encode: false })}`;
   
 };
 
 // see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.3
 const getAccessToken = async ({ code }) => {
-  const url = `${CSS_DOMAIN_NAME_URL}/token`;
-  console.log("---------URL---",url);
+  const url = OIDC_TOKEN_URL;
+  console.log("---------URL---------",url);
   const params = {
-    grant_type: CSS_LOGIN_GRANT_TYPE,
-    client_id: CSS_CLIENT_ID,
-    redirect_uri: CSS_LOGIN_REDIRECT_URL,
+    grant_type: OIDC_GRANT_TYPE,
+    client_id: OIDC_CLIENT_ID,
+    redirect_uri: OIDC_REDIRECT_URL,
     code,
   };
   
@@ -69,8 +72,8 @@ const getAccessToken = async ({ code }) => {
     method: 'post',
     data: qs.stringify(params),
   };
-  if (CSS_CLIENT_SECRET) {
-    config.headers = { Authorization: `Basic ${btoa(`${CSS_CLIENT_ID}:${CSS_CLIENT_SECRET}`)}` };
+  if (OIDC_CLIENT_SECRET) {
+    config.headers = { Authorization: `Basic ${btoa(`${OIDC_CLIENT_ID}:${OIDC_CLIENT_SECRET}`)}` };
   }
 
   const { data } = await axios(config);
@@ -88,9 +91,8 @@ const getAccessToken = async ({ code }) => {
 };
 
 const getUserInfo = async ({ accessToken }) => {
-  const url = `${CSS_DOMAIN_NAME_URL}/userinfo`;
   const { data } = await axios({
-    url,
+    url: OIDC_USER_INFO_URL,
     method: 'get',
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -102,11 +104,11 @@ const getUserInfo = async ({ accessToken }) => {
 
 const getLogoutUrl = () => {
   const params = {
-    client_id: CSS_CLIENT_ID,
-    redirect_uri: CSS_LOGOUT_REDIRECT_URL,
+    client_id: OIDC_CLIENT_ID,
+    redirect_uri: OIDC_LOGOUT_REDIRECT_URL,
   };
 
-  return `${CSS_DOMAIN_NAME_URL}/logout?${qs.stringify(params, { encode: false })}`;
+  return `${OIDC_LOGOUT_URL}?${qs.stringify(params, { encode: false })}`;
 };
 
 module.exports = { getAuthorizationUrl, getAccessToken, getUserInfo, getLogoutUrl };

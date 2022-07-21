@@ -16,24 +16,19 @@ This project requires `http://localhost:3000/oauth` as a `Redirect URI`.
 
 ### How to run
 
-- Local development environment w/o Docker
+Set up the local environment:
 
 1. Go to `examples/next-app`.
-1. Copy `.env.example` to `.env.local`,
-1. Set environment variables in `.env.local`.
-1. Run the development server:
+1. Copy `.env.example` to `.env`,
+1. Set environment variables in `.env`.
+
+To run locally without docker. Run the development server:
 
 ```sh
     yarn install
     yarn dev
 ```
-
-- Docker based local development environment
-
-1. Go to `examples/next-app`
-1. Copy `.env.example` to `.env`,
-1. Set environment variables in `.env`.
-1. Build and run the `docker-compose` file:
+To run locally with docker. Build and run the `docker-compose` file:
 
 ```sh
     docker-compose up
