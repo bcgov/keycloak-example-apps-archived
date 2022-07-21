@@ -43,7 +43,8 @@ The environment varibles are copied and pasted in from the installation JSON gen
 
 More reading on the endpoints used by sso-keycloak can be found in the [wiki](https://github.com/bcgov/sso-keycloak/wiki/test-endpoints).
 
-# Known issues
+## Known issues
+
 1. There are some intermitent issues with WSL and docker where the DNS has trouble connecting and where the authorization step can fail.  (you may get a 401 error displayed on the redirect).
 
 If debugging is failing sometimes waiting fixes the issue.
@@ -51,3 +52,7 @@ If debugging is failing sometimes waiting fixes the issue.
 A successful login will redirect the user from the sso-keycloak sign in page back to your local url and display the login content:
 
 ![succes image](./images/SuccessState.PNG)
+
+## Changing OIDC providers
+
+This app should work with any provider that uses the OIDC specs.  To generalize this, the OIDC endpoint urls in the `confidential-examples/next-app/backend/config.js` file must be updated. This is becasue the endpoint url structure is not part of OIDC spec and therefore varies from provider to provider.
