@@ -38,7 +38,7 @@ export default function Home({ authorization, tokens, user }) {
   if (userFields.length === 0) {
     return (
       <Container>
-        <Button primary onClick={() => (window.location = '/oauth/cognito/login')}>
+        <Button primary onClick={() => (window.location = '/oauth/login')}>
           Login 405
         </Button>
       </Container>
@@ -56,7 +56,7 @@ export default function Home({ authorization, tokens, user }) {
       <h3>User Info</h3>
       <ObjectTable obj={user} />
 
-      <Button primary onClick={() => (window.location = '/oauth/cognito/logout')}>
+      <Button primary onClick={() => (window.location = '/oauth/logout')}>
         Logout
       </Button>
     </Container>
