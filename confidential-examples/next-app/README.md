@@ -10,9 +10,11 @@ An example [Next.js](https://nextjs.org/) application to connect to CSS App clie
 
 Before running the app locally, you will need a keycloak integration.
 
-To use a standard keycloak realm goto the [CSS APP](https://bcgov.github.io/sso-requests) and create an integration.  It is recomended to do so in the development environment with the IDIR Identity Provider.
+To use a standard keycloak realm goto the [CSS APP](https://bcgov.github.io/sso-requests) and create an integration. 
 
-This project requires `http://localhost:3000/oauth` as a `Redirect URI`. 
+During the integration creation flow you will be prompted for the inputs needed for your project.  For this example project you will need a `Confidential` client type generated in the `Development` environment. 
+
+This project also requires `http://localhost:3000/oauth` as a `Redirect URI`. 
 
 ### How to run
 
