@@ -19,8 +19,8 @@ This project also requires `http://localhost:3000` as a `Redirect URI`.
 4. Run the development server:
 
 ```sh
-    npm install
-    npm run dev
+    yarn
+    yarn dev
 ```
 
 5. Browse to http://localhost:3000 to see this Keycloak OIDC Playground app.
