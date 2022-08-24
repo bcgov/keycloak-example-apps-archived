@@ -1,5 +1,7 @@
 # About
 
+# **This branch contains archived example apps [HERE](./archived-apps/)**
+
 This repository contains example applications to demonstrate integrating with keycloak.
 
 To use the examples in the app, you will need to have a keycloak client setup to integrate with.
