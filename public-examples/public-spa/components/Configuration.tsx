@@ -98,16 +98,6 @@ export default function Configuration({ kcConfig, setKcConfig, loginOptions, set
               defaultValue={loginOptionsData?.redirectUri}
             />
           </Form.Field>
-          {/* <Form.Field>
-            <label>PKCE Method</label>
-            <Form.Input
-              placeholder="e.g idir"
-              required
-              onChange={handleLoginOptionsChange}
-              name="PKCEMethod"
-              defaultValue={loginOptionsData?.pkceMethod}
-            />
-          </Form.Field> */}
           <Button type="submit">Update</Button>
         </Form>
       </Accordion.Content>
