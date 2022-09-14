@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const _ = require('lodash');
 
-const { getAuthorizationUrl, getAccessToken, getUserInfo, getLogoutUrl } = require('./cognito');
+const { getAuthorizationUrl, getAccessToken, getUserInfo, getLogoutUrl } = require('./init-express');
 
 const { COOKIE_SESSION_NAME, COOKIE_SESSION_SECRET } = require('./config');
 
@@ -41,8 +41,8 @@ const initExpresss = async () => {
     }),
   );
 
-  // Cognito Login
-  expressServer.get('/oauth/cognito/login', async (req, res) => {
+  // Login
+  expressServer.get('/oauth/login', async (req, res) => {
     try {
       if (req.session.user) {
         res.redirect(`/`);
@@ -57,9 +57,9 @@ const initExpresss = async () => {
     }
   });
 
-  // Cognito Callback; Authorization Response
+  // Callback; Authorization Response
   // see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.2
-  expressServer.get('/oauth/cognito', async (req, res) => {
+  expressServer.get('/oauth', async (req, res) => {
     try {
       const { code } = req.query;
       console.log('-----------AUTH RESPONSE---------', code);
@@ -86,13 +86,14 @@ const initExpresss = async () => {
     }
   });
 
-  expressServer.get('/oauth/cognito/logout', (req, res) => {
+  expressServer.get('/oauth/logout', (req, res) => {
     try {
       if (req.session.user) {
         req.session.user = undefined;
       }
-
-      res.redirect('/');
+      const logoutUrl = getLogoutUrl();
+      console.log('-----------LOGING OUT---------', logoutUrl);
+      res.redirect(logoutUrl);
     } catch (err) {
       console.error(err);
       res.json({ success: false, error: err.message || err });

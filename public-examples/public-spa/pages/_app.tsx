@@ -5,6 +5,10 @@ import type { AppProps } from 'next/app';
 import Keycloak from 'keycloak-js';
 import type { KeycloakInstance, KeycloakConfig, KeycloakInitOptions, KeycloakLoginOptions } from 'keycloak-js';
 import store from 'store2';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig = {} } = getConfig() || {};
+const { OIDC_CLIENT_ID, OIDC_AUTHORIZATION_URL, OIDC_REALM_TYPE, OIDC_REDIRECT_URL } = publicRuntimeConfig;
 
 const initOptions: KeycloakInitOptions = { pkceMethod: 'S256' };
 
@@ -14,15 +18,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const [kcConfig, setKcConfig] = useState<KeycloakConfig>(
     store.session('kcConfig') || {
-      url: 'xxxxxx.gov.bc.caxxxxxxxxx',
-      realm: 'standard',
-      clientId: 'XXXXXXXXXXX',
+      url: OIDC_AUTHORIZATION_URL,
+      realm: OIDC_REALM_TYPE,
+      clientId: OIDC_CLIENT_ID,
     },
   );
 
   const [loginOptions, setLginOptions] = useState<KeycloakLoginOptions>(
     store.session('loginOptions') || {
-      redirectUri: 'https://bcgov.github.io/keycloak-example-apps',
+      redirectUri: OIDC_REDIRECT_URL,
       idpHint: '',
     },
   );
