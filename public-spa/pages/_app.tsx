@@ -6,7 +6,11 @@ import Keycloak from 'keycloak-js';
 import type { KeycloakInstance, KeycloakConfig, KeycloakInitOptions, KeycloakLoginOptions } from 'keycloak-js';
 import store from 'store2';
 
-const initOptions: KeycloakInitOptions = { pkceMethod: 'S256' };
+const initOptions: KeycloakInitOptions = {
+  pkceMethod: 'S256',
+  checkLoginIframe: false,
+  onLoad: undefined,
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [keycloak, setKeycloak] = useState<KeycloakInstance>();
@@ -33,6 +37,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     const initKeycloak = async () => {
       const _keycloak = new (Keycloak as any)(kcConfig);
       setKeycloak(_keycloak);
+
+      _keycloak.onTokenExpired = () => {
+        _keycloak.updateToken();
+      };
 
       setLoading(true);
       _keycloak

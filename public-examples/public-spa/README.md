@@ -1,13 +1,14 @@
 ## background
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Creating a Keycloak integration
 
 Before running the app locally, you will need a keycloak integration.
 
-To use a standard keycloak realm goto the [CSS APP](https://bcgov.github.io/sso-requests) and create an integration. 
+To use a standard keycloak realm goto the [CSS APP](https://bcgov.github.io/sso-requests) and create an integration.
 
-During the integration creation flow you will be prompted for the inputs needed for your project. For this example project you will need a `Public` client type generated in the `Development` environment. 
+During the integration creation flow you will be prompted for the inputs needed for your project. For this example project you will need a `Public` client type generated in the `Development` environment.
 
 This project also requires `http://localhost:3000` as a `Redirect URI`.
 
@@ -25,8 +26,8 @@ This project also requires `http://localhost:3000` as a `Redirect URI`.
 
 5. Browse to http://localhost:3000 to see this Keycloak OIDC Playground app.
 
-
 ## Additional Notes
+
 Modify/edit `pages/index.tsx` - this page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
