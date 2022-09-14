@@ -38,7 +38,7 @@ const initExpresss = async () => {
         secure: false,
       },
       store,
-    })
+    }),
   );
 
   // Cognito Login
@@ -48,7 +48,7 @@ const initExpresss = async () => {
         res.redirect(`/`);
       } else {
         const authUrl = await getAuthorizationUrl();
-        console.log("-----------LOGIN---------", authUrl);
+        console.log('-----------LOGIN---------', authUrl);
         res.redirect(authUrl);
       }
     } catch (err) {
@@ -62,7 +62,7 @@ const initExpresss = async () => {
   expressServer.get('/oauth/cognito', async (req, res) => {
     try {
       const { code } = req.query;
-      console.log("-----------AUTH RESPONSE---------", code);
+      console.log('-----------AUTH RESPONSE---------', code);
       const tokens = await getAccessToken({ code });
       const { access_token } = tokens;
       const userInfo = await getUserInfo({ accessToken: access_token });

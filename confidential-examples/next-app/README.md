@@ -25,11 +25,12 @@ An example [Next.js](https://nextjs.org/) application to connect to CSS App clie
 1. Go to `examples/next-app`
 1. Copy `.env.example` to `.env`,
 1. Set environment variables in `.env`.
-1. Build the `docker image`: 
+1. Build the `docker image`:
 
 ```sh
     docker build -t next-app-example .
 ```
+
 1. Run the `docker-compose` file:
 
 ```sh
@@ -38,9 +39,8 @@ An example [Next.js](https://nextjs.org/) application to connect to CSS App clie
 
 - Docker Compose sources environment variables from a `.env` file located next to the docker-compose.yml file.
 
-
 # Known issues
+
 1. env.example should not refer to cognito but this requires looking at the parts of the code to change
 1. the codebase should not have any hard coded URLs ie fix cognito.js
 1. readme should place instructions on what is used from the json installation file and well known end points
-

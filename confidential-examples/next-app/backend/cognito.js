@@ -36,7 +36,6 @@ const decodingJWT = (token) => {
 
 // see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.1
 const getAuthorizationUrl = async ({ identity_provider } = {}) => {
-
   const params = {
     client_id: CSS_CLIENT_ID,
     response_type: CSS_LOGIN_RESPONSE_TYPE,
@@ -51,15 +50,14 @@ const getAuthorizationUrl = async ({ identity_provider } = {}) => {
 
   //return `${COGNITO_DOMAIN_NAME_URL}/authorize?${qs.stringify(params, { encode: false })}`;
   return `${CSS_DOMAIN_NAME_URL}/auth?${qs.stringify(params, { encode: false })}`;
-  
 };
 
 // see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.3
 // see https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/
 const getAccessToken = async ({ code }) => {
- //const url = `${COGNITO_DOMAIN_NAME_URL}/oauth2/token`;
+  //const url = `${COGNITO_DOMAIN_NAME_URL}/oauth2/token`;
   const url = `${CSS_DOMAIN_NAME_URL}/token`;
-  console.log("---------URL---",url);
+  console.log('---------URL---', url);
   const params = {
     grant_type: CSS_LOGIN_GRANT_TYPE,
     client_id: CSS_CLIENT_ID,

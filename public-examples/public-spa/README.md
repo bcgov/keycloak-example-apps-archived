@@ -1,6 +1,8 @@
 ## Pre-req
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-1. Create a project ```public-spa``` with Next js https://github.com/vercel/next.js/tree/canary/packages/create-next-app 
+
+1. Create a project `public-spa` with Next js https://github.com/vercel/next.js/tree/canary/packages/create-next-app
 
 ```sh
 npx create-next-app@latest
@@ -9,6 +11,7 @@ yarn create next-app
 # or
 pnpm create next-app
 ```
+
 1. Run the development server to make sure you are up and running:
 
 ```bash
@@ -17,16 +20,18 @@ npm run dev
 yarn dev
 ```
 
+## Steps to apply CSS Installation Json
 
-##  Steps to apply CSS Installation Json
-1. Copy the missing/different files from here into your NextjS project 
-``` sh
+1. Copy the missing/different files from here into your NextjS project
+
+```sh
 cp -a path_to_source/. path_to_destination/
 ```
 
-2. Add the relevant keycloak config around line 15 of pages/_app.tsx
+2. Add the relevant keycloak config around line 15 of pages/\_app.tsx
 3. make sure your dev server is running. you if you used npx create-next-app@latest, you may have to install the latest node
-``` sh
+
+```sh
 
 npm install next@latest
 
@@ -34,10 +39,9 @@ npm install next@latest
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
 ## Notes
-3. Modify/edit `pages/index.tsx` - this page auto-updates as you edit the file.
 
+3. Modify/edit `pages/index.tsx` - this page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
