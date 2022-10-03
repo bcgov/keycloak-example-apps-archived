@@ -26,7 +26,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const [loginOptions, setLginOptions] = useState<KeycloakLoginOptions>(
     store.session('loginOptions') || {
-      redirectUri: 'https://bcgov.github.io/keycloak-example-apps',
+      redirectUri: `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
+        'https://bcgov.github.io/keycloak-example-apps',
+      )}`,
       idpHint: '',
     },
   );
