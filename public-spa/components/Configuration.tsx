@@ -41,7 +41,7 @@ export default function Configuration({ kcConfig, setKcConfig, loginOptions, set
           <Form.Field>
             <label>Auth Server Url</label>
             <Form.Input
-              placeholder="e.g https://dev.oidc.gov.bc.ca/auth"
+              placeholder="e.g https://dev.loginproxy.gov.bc.ca/auth"
               required
               type="url"
               onChange={handleKcConfigChange}
