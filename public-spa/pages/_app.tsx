@@ -18,9 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const [kcConfig, setKcConfig] = useState<KeycloakConfig>(
     store.session('kcConfig') || {
-      url: 'https://dev.oidc.gov.bc.ca/auth',
-      realm: 'onestopauth',
-      clientId: 'sso-requests',
+      url: 'https://dev.loginproxy.gov.bc.ca/auth',
+      realm: 'standard',
+      clientId: 'test-client',
     },
   );
 
