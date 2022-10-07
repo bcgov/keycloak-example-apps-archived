@@ -22,9 +22,13 @@ This is an example react app that authenticates users using OAuth 2.0 standard f
   REACT_APP_SSO_CLIENT_ID=<UPDATE>
   ```
 
-In the project directory, you can run:
+In the project directory, you can run either `yarn` or `npm` commands:
 
-### `yarn start`
+### `yarn install` or `npm install`
+
+Installs dependencies from `package.json`
+
+### `yarn start` or `npm run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
