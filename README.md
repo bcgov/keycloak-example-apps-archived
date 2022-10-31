@@ -1,5 +1,7 @@
 # About
 
+![Lifecycle:Stable](https://img.shields.io/badge/Lifecycle-Stable-97ca00)
+
 This repository contains example applications to demonstrate integrating with keycloak.
 
 To use the examples in the app, you will need to have a keycloak client setup to integrate with.
