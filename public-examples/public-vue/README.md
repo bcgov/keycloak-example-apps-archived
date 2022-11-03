@@ -16,7 +16,7 @@ This is an example vue app that authenticates users using OAuth 2.0 standard flo
 - Update below required values and add them to a `.env` file and save it in project directory
 
   ```sh
-  VITE_SSO_REDIRECT_URI=http://localhost:3000
+  VITE_SSO_REDIRECT_URI=http://localhost:5173
   VITE_SSO_AUTH_SERVER_URL=https://dev.loginproxy.gov.bc.ca/auth
   VITE_SSO_REALM=standard
   VITE_SSO_CLIENT_ID=<UPDATE>
