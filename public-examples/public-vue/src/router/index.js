@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from '../stores/authStore'
 import HomeView from '../views/HomeView.vue'
 import { initializeKeycloak } from '../services/keycloak'
 
@@ -18,7 +17,6 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from) => {
-  const authStore = useAuthStore()
   if (to.meta.requiresAuth) {
     const keycloak = await initializeKeycloak()
     if (keycloak.authenticated) return true
