@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import 'semantic-ui-css/semantic.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import type { AppProps } from 'next/app';
@@ -54,16 +55,24 @@ function MyApp({ Component, pageProps }: AppProps) {
         })
         .catch((error: any) => {
           console.log('Error in init: ', error);
-          toast.error(`${error?.error}: ${error?.error_description}`, {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: 0,
-            theme: 'colored',
-          });
+          toast.error(
+            () => (
+              <>
+                <h4>{error?.error}</h4>
+                <div>${error?.error_description}</div>
+              </>
+            ),
+            {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: 0,
+              theme: 'colored',
+            },
+          );
           setLoading(false);
         });
     };
