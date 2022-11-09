@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import 'semantic-ui-css/semantic.min.css';
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import type { AppProps } from 'next/app';
 import Keycloak from 'keycloak-js';
 import type { KeycloakInstance, KeycloakConfig, KeycloakInitOptions, KeycloakLoginOptions } from 'keycloak-js';
@@ -53,6 +54,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         })
         .catch((error: any) => {
           console.log('Error in init: ', error);
+          toast.error(`${error?.error}: ${error?.error_description}`, {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: 0,
+            theme: 'colored',
+          });
           setLoading(false);
         });
     };
@@ -60,14 +71,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [kcConfig]);
 
   return (
-    <Component
-      {...pageProps}
-      keycloak={keycloak}
-      kcConfig={kcConfig}
-      setKcConfig={setKcConfig}
-      loginOptions={loginOptions}
-      setLginOptions={setLginOptions}
-    />
+    <>
+      <ToastContainer />
+      <Component
+        {...pageProps}
+        keycloak={keycloak}
+        kcConfig={kcConfig}
+        setKcConfig={setKcConfig}
+        loginOptions={loginOptions}
+        setLginOptions={setLginOptions}
+      />
+    </>
   );
 }
 
