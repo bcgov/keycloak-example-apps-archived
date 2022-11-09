@@ -98,6 +98,17 @@ export default function Configuration({ kcConfig, setKcConfig, loginOptions, set
               defaultValue={loginOptionsData?.redirectUri}
             />
           </Form.Field>
+          <Form.Field>
+            <label>Scope</label>
+            <Form.Input
+              placeholder="openid"
+              required
+              type="text"
+              onChange={handleLoginOptionsChange}
+              name="scope"
+              defaultValue={loginOptionsData?.scope}
+            />
+          </Form.Field>
           {/* <Form.Field>
             <label>PKCE Method</label>
             <Form.Input

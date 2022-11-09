@@ -30,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         'https://bcgov.github.io/keycloak-example-apps',
       )}`,
       idpHint: '',
+      scope: 'openid',
     },
   );
 
